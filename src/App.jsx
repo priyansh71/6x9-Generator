@@ -1,8 +1,10 @@
 import React from 'react'
+import Table from './Components/Table.jsx';
 
 const App = () => {
   return (
-    <div className="App">
+    <div>
+      <Table />
     </div>
   );
 }
