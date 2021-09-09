@@ -1,10 +1,12 @@
 import React from 'react'
-import Table from './Components/Table.jsx';
+import Input from './Components/dynamic/Input.jsx';
+import Table from './Components/dynamic/Table.jsx';
 
 const App = () => {
   return (
     <div>
-      <Table />
+      <Input />
+      {/* <Table /> */}
     </div>
   );
 }
