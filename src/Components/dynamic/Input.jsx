@@ -7,17 +7,16 @@ import {
   Center,
   Text,
   Button,
-  Box,
 } from "@chakra-ui/react";
 import Course from "../static/Course";
 
 const Input = (props) => {
   const [value, setValue] = useState();
   const box = useColorModeValue("gray.900", "gray.100");
-  
+
   return (
     <div>
-        <Center my="2">
+      <Center my="2">
         <Text fontSize="3xl" color={box}>
           Time-Table
         </Text>
@@ -31,22 +30,21 @@ const Input = (props) => {
           borderColor={box}
           _focus={{ focus: "none" }}
           onChange={(e) => setValue(e.target.value)}
-          mb="2"
           value={value}
-          
         >
           {Course.map((item, index) => {
             return (
-              <option value={item.Code} key={index} >
+              <option value={item.Code} key={index}>
                 {item.Name}
               </option>
             );
           })}
         </Select>
-        <Button display="none" type="submit" onClick={value ? props.handleTable(value) : null}></Button>
-      </Center>
-      <Center my="3">
-        <Box color={box}>{value}</Box>
+        <Button
+          display="none"
+          type="submit"
+          onClick={value ? props.handleTable(value) : null}
+        ></Button>
       </Center>
     </div>
   );
