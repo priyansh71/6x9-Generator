@@ -1,84 +1,62 @@
 /** @format */
 
 import React, { useState } from "react";
-import {
-  Grid,
-  Box,
-  Flex,
-  useColorModeValue,
-  useColorMode,
-  Button,
-  Center,
-  GridItem,
-  Text,
-} from "@chakra-ui/react";
+import { Flex, useColorModeValue ,Grid, GridItem } from "@chakra-ui/react";
+import Input from "./Input";
+import Course from "../static/Course";
 
-export const Table = () => {
-  const { toggleColorMode } = useColorMode();
+function Table() {
   let [days, time] = [6, 9];
   const box = useColorModeValue("gray.900", "gray.100");
-  const height = "8vh";
-  const borderWidth = "0.9px";
   const [table, setTable] = useState(
-    Array(time)
-      .fill()
-      .map(() => Array(days).fill([]))
+    Array(time*days)
+      .fill(null)
   );
+
+  const handleTable = (value) => {
+    const course = Course.find((item) => item.Code === value);
+    let hour = course.Hour
+    setTable((prev) => {
+      prev[hour] = course;
+      return prev;
+  })}
 
   return (
     <Flex
       alignItems="center"
       justifyContent="center"
       flexDirection="column"
-      mt="8"
+      mt="1"
+      mb="2"
     >
-      <Center mb="8">
-        <Text fontSize="3xl" color={box}>
-          Time-Table
-        </Text>
-      </Center>
-      <Box>
+      <Input handleTable={handleTable} />
+      <Grid templateColumns="repeat(9,1fr)" >
         {table.map((item, index) => {
           return (
-            <Grid
-              templateColumns="repeat(9, 1fr)"
-              gap={0.5}
+           item ? 
+            <GridItem
               key={index}
-              display="flex"
-              flexDirection="row"
-            >
-              {item.map((a, b) => {
-                return (
-                  <GridItem
-                    w="12vw"
-                    h={height}
-                    borderColor={box}
-                    borderWidth={borderWidth}
-                    key={b}
-                    mb="0.5"
-                    boxShadow="base"
-                  />
-                );
-              })}
-            </Grid>
+              h="9vh"
+              w="9vw"
+              borderWidth="0.6px"
+              borderColor={box}
+              background="grey"
+            />
+            :
+            <GridItem
+              key={index}
+              h="9vh"
+              w="9vw"
+              borderWidth="0.6px"
+              borderColor={box}
+              backgroundColor="white"
+            />
+          
           );
         })}
-      </Box>
-      <Center mt="6">
-        <Button
-          onClick={toggleColorMode}
-          colorScheme="purple"
-          _focus={{ _focus: "none" }}
-          fontFamily="Ubuntu Mono"
-          fontWeight="lighter"
-          fontSize="xl"
-          p="6"
-        >
-          Toggle Color
-        </Button>
-      </Center>
+      </Grid>
     </Flex>
   );
-};
+}
 
 export default Table;

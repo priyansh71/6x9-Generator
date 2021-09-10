@@ -5,19 +5,23 @@ import {
   Select,
   useColorModeValue,
   Center,
+  Text,
   Button,
-  useColorMode,
   Box,
 } from "@chakra-ui/react";
 import Course from "../static/Course";
 
-const Input = () => {
-  const [value, setValue] = useState("");
-
-  const { toggleColorMode } = useColorMode();
+const Input = (props) => {
+  const [value, setValue] = useState();
   const box = useColorModeValue("gray.900", "gray.100");
+  
   return (
     <div>
+        <Center my="2">
+        <Text fontSize="3xl" color={box}>
+          Time-Table
+        </Text>
+      </Center>
       <Center mt="9">
         <Select
           placeholder="Select Course"
@@ -25,33 +29,23 @@ const Input = () => {
           w="md"
           borderWidth="1"
           borderColor={box}
-          _focus={{ _focus: "none" }}
+          _focus={{ focus: "none" }}
           onChange={(e) => setValue(e.target.value)}
+          mb="2"
           value={value}
+          
         >
           {Course.map((item, index) => {
             return (
-              <option value={item.Code} key={index}>
+              <option value={item.Code} key={index} >
                 {item.Name}
               </option>
             );
           })}
         </Select>
+        <Button display="none" type="submit" onClick={value ? props.handleTable(value) : null}></Button>
       </Center>
-      <Center mt="6">
-        <Button
-          onClick={toggleColorMode}
-          colorScheme="purple"
-          _focus={{ _focus: "none" }}
-          fontFamily="Ubuntu Mono"
-          fontWeight="lighter"
-          fontSize="large"
-          p="4"
-        >
-          Toggle Color
-        </Button>
-      </Center>
-      <Center mt="5">
+      <Center my="3">
         <Box color={box}>{value}</Box>
       </Center>
     </div>
