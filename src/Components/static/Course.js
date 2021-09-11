@@ -1,5 +1,3 @@
-/** @format */
-
 const Course = [
   {
     ID: "1.0",
@@ -25,7 +23,6 @@ const Course = [
     ID: "2.0",
     Code: "CSF222",
     Name: "Discrete Math for CS",
-
     Type: "Lecture",
     Units: 3,
     Hour: [2],
@@ -84,9 +81,19 @@ const Course = [
     Instructor: "Ravi Kadlimatti",
   },
   {
+    ID: "4.2",
+    Code: "CSF215",
+    Name: "Digital Design Lab",
+    Type: "Lab",
+    Units: 3,
+    Hour: [14,15],
+    Repeat: 1,
+    Instructor: "Hrishikesh So",
+  },
+  {
     ID: "5.0",
     Code: "GSF322",
-    Name: "Critical Analysis of Literature and Cinema",
+    Name: "Critical Analysis of Lit. and Cinema",
     Type: "Lecture",
     Units: 3,
     Hour: [10],
@@ -101,6 +108,14 @@ const Course = [
     Units: 3,
     Hour: [11],
     Repeat: 3,
+    Instructor: "Neena Goveas",
+  },
+  {
+    ID: "6.1",
+    Code: "CSF213",
+    Name: "OOP Lab",
+    Type: "Lab",
+    Hour: [34,35],
     Instructor: "Neena Goveas",
   },
 ];

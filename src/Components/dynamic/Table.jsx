@@ -19,30 +19,41 @@ import lightColors from "../static/lightColors";
 function Table() {
   const { colorMode } = useColorMode();
   let [days, time] = [6, 9];
-  const border = useColorModeValue("gray.800", "gray.100");
+  const borderColor = useColorModeValue("gray.800", "gray.100");
+  const buttonColor = useColorModeValue("teal.600", "teal.200");
   const empty = useColorModeValue("gray.100", "gray.800");
   const [table, setTable] = useState(Array(time * days).fill(null));
 
   const handleTable = (value) => {
     const course = Course.find((item) => item.ID === value);
-    console.log(course);
+    console.clear();
     let hour = course.Hour;
     let randomDark = darkColors[Math.floor(Math.random() * darkColors.length)];
     let randomLight =
       lightColors[Math.floor(Math.random() * lightColors.length)];
-    setTable((prev) => {
-      let i;
-      for (i = 0; i < course.Repeat - 1; i++) {
-        hour[i + 1] = 2 * time + hour[i];
-      }
-      for (i = 0; i < 3; i++) {
-        prev[hour[i]] = course;
-        course.darkColor = randomDark;
-        course.lightColor = randomLight;
-      }
+    course.Type === "Lecture" || "Tutorial"
+      ? setTable((prev) => {
+          let i;
+          for (i = 0; i < course.Repeat - 1; i++) {
+            hour[i + 1] = 2 * time + hour[i];
+          }
+          for (i = 0; i < 3; i++) {
+            prev[hour[i]] = course;
+            Object.assign(course, { darkColor: randomDark });
+            Object.assign(course, { lightColor: randomLight });
+          }
 
-      return prev;
-    });
+          return prev;
+        })
+      : setTable((prev) => {
+          let i;
+          for (i = 0; i < 3; i++) {
+            prev[hour[i]] = course;
+            Object.assign(course, { darkColor: randomDark });
+            Object.assign(course, { lightColor: randomLight });
+          }
+          return prev;
+        });
   };
 
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
@@ -61,12 +72,11 @@ function Table() {
         mt="6"
         mb="7"
         color={empty}
-        backgroundColor={border}
-        _hover={{ background: { border } }}
+        backgroundColor={buttonColor}
+        _hover={{ background: { buttonColor } }}
         _focus={{ _focus: "none" }}
       >
-        {" "}
-        Submit
+        Add
       </Button>
       <Grid templateColumns="repeat(9,1fr)">
         {table.map((item, index) => {
@@ -74,6 +84,7 @@ function Table() {
             <GridItem
               key={index}
               h="9vh"
+              opacity="0.95"
               w="9vw"
               borderColor="transparent"
               backgroundColor={
@@ -81,10 +92,15 @@ function Table() {
               }
               color={empty}
             >
-              <Center position="relative" top="20%" fontSize="0.9em">
-                  {item.Code}
-                  <br />
-                  {item.Type}
+              <Center
+                position="relative"
+                top="20%"
+                fontSize="0.88em"
+                fontWeight="bold"
+              >
+                {item.Code}
+                <br />
+                {item.Type}
               </Center>
             </GridItem>
           ) : (
@@ -93,7 +109,7 @@ function Table() {
               h="9vh"
               w="9vw"
               borderWidth="0.02px"
-              borderColor={border}
+              borderColor={borderColor}
               backgroundColor={empty}
             />
           );

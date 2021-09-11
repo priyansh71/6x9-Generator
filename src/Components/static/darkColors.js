@@ -4,10 +4,9 @@ const darkColors = [
     "cyan.900",
     "blue.900",
     "teal.900",
-    "green.900",
+    "green.800",
     "orange.900",
     "red.900",
-    "gray.900"
 ]
 
 export default darkColors;

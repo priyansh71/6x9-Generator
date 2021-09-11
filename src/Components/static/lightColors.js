@@ -1,11 +1,10 @@
 const lightColors = [
-    "pink.200",
-    "purple.300",
-    "cyan.200",
-    "blue.200",
-    "teal.200",
-    "green.200",
+    "purple.100",
+    "cyan.100",
+    "teal.100",
+    "green.100",
     "red.200",
+    "blue.100"
 ]
 
 export default lightColors;
