@@ -7,6 +7,7 @@ import {
   Grid,
   GridItem,
   Button,
+  Center,
 } from "@chakra-ui/react";
 
 import Input from "./Input";
@@ -22,7 +23,13 @@ function Table() {
     const course = Course.find((item) => item.Code === value);
     let hour = course.Hour;
     setTable((prev) => {
-      prev[hour] = course;
+      let i;
+      hour[1] = 2*time + hour[0];
+      hour[2] = 2*time + hour[1];
+      for(i=0 ; i<3 ; i++){
+        prev[hour[i]] = course;
+      }
+
       return prev;
     });
   };
@@ -57,16 +64,22 @@ function Table() {
               key={index}
               h="9vh"
               w="9vw"
-              borderWidth="0.6px"
-              borderColor={box}
+              borderBottomWidth="0.1px"
+              borderRightWidth="0.1px"
+              borderLeftWidth="0.1px"
+              borderColor={empty}
               background={box}
-            />
+              color={empty}
+            >
+              <Center position="relative" top="30%">{item.Code}</Center>
+              
+              </GridItem>
           ) : (
             <GridItem
               key={index}
               h="9vh"
               w="9vw"
-              borderWidth="0.6px"
+              borderWidth="0.02px"
               borderColor={box}
               backgroundColor={empty}
             />
