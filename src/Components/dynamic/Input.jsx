@@ -11,9 +11,8 @@ import {
 import Course from "../static/Course";
 
 const Input = (props) => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState("");
   const box = useColorModeValue("gray.900", "gray.100");
-
   return (
     <div>
       <Center my="2">
@@ -34,8 +33,8 @@ const Input = (props) => {
         >
           {Course.map((item, index) => {
             return (
-              <option value={item.Code} key={index}>
-                {item.Name}
+              <option value={item.ID} key={index}>
+                {item.Code} - {item.Name}
               </option>
             );
           })}

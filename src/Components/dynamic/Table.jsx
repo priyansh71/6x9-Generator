@@ -4,6 +4,7 @@ import React, { useState, useReducer } from "react";
 import {
   Flex,
   useColorModeValue,
+  useColorMode,
   Grid,
   GridItem,
   Button,
@@ -12,22 +13,32 @@ import {
 
 import Input from "./Input";
 import Course from "../static/Course";
+import darkColors from "../static/darkColors";
+import lightColors from "../static/lightColors";
 
 function Table() {
+  const { colorMode } = useColorMode();
   let [days, time] = [6, 9];
-  const box = useColorModeValue("gray.700", "gray.100");
+  const border = useColorModeValue("gray.800", "gray.100");
   const empty = useColorModeValue("gray.100", "gray.800");
   const [table, setTable] = useState(Array(time * days).fill(null));
 
   const handleTable = (value) => {
-    const course = Course.find((item) => item.Code === value);
+    const course = Course.find((item) => item.ID === value);
+    console.log(course);
     let hour = course.Hour;
+    let randomDark = darkColors[Math.floor(Math.random() * darkColors.length)];
+    let randomLight =
+      lightColors[Math.floor(Math.random() * lightColors.length)];
     setTable((prev) => {
       let i;
-      hour[1] = 2*time + hour[0];
-      hour[2] = 2*time + hour[1];
-      for(i=0 ; i<3 ; i++){
+      for (i = 0; i < course.Repeat - 1; i++) {
+        hour[i + 1] = 2 * time + hour[i];
+      }
+      for (i = 0; i < 3; i++) {
         prev[hour[i]] = course;
+        course.darkColor = randomDark;
+        course.lightColor = randomLight;
       }
 
       return prev;
@@ -50,8 +61,8 @@ function Table() {
         mt="6"
         mb="7"
         color={empty}
-        backgroundColor={box}
-        _hover={{ background: { box } }}
+        backgroundColor={border}
+        _hover={{ background: { border } }}
         _focus={{ _focus: "none" }}
       >
         {" "}
@@ -64,23 +75,25 @@ function Table() {
               key={index}
               h="9vh"
               w="9vw"
-              borderBottomWidth="0.1px"
-              borderRightWidth="0.1px"
-              borderLeftWidth="0.1px"
-              borderColor={empty}
-              background={box}
+              borderColor="transparent"
+              backgroundColor={
+                colorMode === "light" ? item.darkColor : item.lightColor
+              }
               color={empty}
             >
-              <Center position="relative" top="30%">{item.Code}</Center>
-              
-              </GridItem>
+              <Center position="relative" top="20%" fontSize="0.9em">
+                  {item.Code}
+                  <br />
+                  {item.Type}
+              </Center>
+            </GridItem>
           ) : (
             <GridItem
               key={index}
               h="9vh"
               w="9vw"
               borderWidth="0.02px"
-              borderColor={box}
+              borderColor={border}
               backgroundColor={empty}
             />
           );
