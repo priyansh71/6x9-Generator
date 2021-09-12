@@ -88,7 +88,7 @@ const Course = [
     Units: 3,
     Hour: [14,15],
     Repeat: 1,
-    Instructor: "Hrishikesh So",
+    Instructor: "Hrishikesh Sonalikar",
   },
   {
     ID: "5.0",

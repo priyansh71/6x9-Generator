@@ -7,20 +7,25 @@ import {
   useColorMode,
   Grid,
   GridItem,
-  Button,
   Center,
+  Box,
+  Container,
 } from "@chakra-ui/react";
 
-import Input from "./Input";
+import Header from "./Header";
+import AddItem from "./AddItem";
 import Course from "../static/Course";
 import darkColors from "../static/darkColors";
 import lightColors from "../static/lightColors";
+import RemoveItem from "./RemoveItem";
+import Manager from "./Manager";
 
 function Table() {
   const { colorMode } = useColorMode();
   let [days, time] = [6, 9];
   const borderColor = useColorModeValue("gray.800", "gray.100");
-  const buttonColor = useColorModeValue("teal.600", "teal.200");
+  const addButtonColor = useColorModeValue("teal.600", "teal.200");
+  const removeButtonColor = useColorModeValue("red.700", "red.300");
   const empty = useColorModeValue("gray.100", "gray.800");
   const [table, setTable] = useState(Array(time * days).fill(null));
 
@@ -66,18 +71,28 @@ function Table() {
       mt="1"
       mb="2"
     >
-      <Input handleTable={handleTable} />
-      <Button
-        onClick={() => forceUpdate()}
-        mt="6"
-        mb="7"
-        color={empty}
-        backgroundColor={buttonColor}
-        _hover={{ background: { buttonColor } }}
-        _focus={{ _focus: "none" }}
-      >
-        Add
-      </Button>
+      <Header />
+      <Container display="flex" alignItems="center" flexDir="column" mb="10">
+        <Box display="flex" flexDir="row">
+          <AddItem handleTable={handleTable} />
+          <Manager
+            textColor={empty}
+            color={addButtonColor}
+            type="Add"
+            handler={() => forceUpdate()}
+          />
+        </Box>
+        <Box display="flex" flexDir="row" alignItems="center">
+          <RemoveItem />
+          <Manager
+            textColor={empty}
+            color={removeButtonColor}
+            type="Remove"
+            handler={() => forceUpdate()}
+          />
+        </Box>
+      </Container>
+
       <Grid templateColumns="repeat(9,1fr)">
         {table.map((item, index) => {
           return item ? (

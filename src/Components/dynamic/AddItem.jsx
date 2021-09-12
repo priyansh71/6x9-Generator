@@ -3,14 +3,12 @@
 import React, { useState } from "react";
 import { Select, useColorModeValue, Button } from "@chakra-ui/react";
 import Course from "../static/Course";
-import Header from "./Header";
 
-const Input = (props) => {
+const AddItem = (props) => {
   const [value, setValue] = useState("");
-  const box = useColorModeValue("gray.900", "gray.100");
+  const box = useColorModeValue("gray.500", "gray.100");
   return (
     <div>
-      <Header />
       <Select
         placeholder="Select Course"
         size="md"
@@ -39,4 +37,4 @@ const Input = (props) => {
   );
 };
 
-export default Input;
+export default AddItem;
