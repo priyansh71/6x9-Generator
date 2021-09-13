@@ -1,12 +1,21 @@
 /** @format */
 
-import React, { useState } from "react";
-import { Select, useColorModeValue, Button } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import { Select, useColorModeValue } from "@chakra-ui/react";
 import Course from "../static/Course";
 
 const AddItem = (props) => {
   const [value, setValue] = useState("");
   const box = useColorModeValue("gray.500", "gray.100");
+
+  const handler = (e) => {
+    setValue(e.target.value);
+  };
+
+  useEffect(() => {
+    if (value) props.handleTable(value);
+  }, [value, props]);
+
   return (
     <div>
       <Select
@@ -17,7 +26,7 @@ const AddItem = (props) => {
         mt="6"
         borderColor={box}
         _focus={{ focus: "none" }}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={handler}
         value={value}
       >
         {Course.map((item, index) => {
@@ -28,11 +37,6 @@ const AddItem = (props) => {
           );
         })}
       </Select>
-      <Button
-        display="none"
-        type="submit"
-        onClick={value ? props.handleTable(value) : null}
-      />
     </div>
   );
 };

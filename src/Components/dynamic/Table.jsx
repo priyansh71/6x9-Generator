@@ -8,6 +8,7 @@ import {
   Grid,
   GridItem,
   Center,
+  Button,
   Box,
 } from "@chakra-ui/react";
 import { MinusIcon } from "@chakra-ui/icons";
@@ -16,7 +17,6 @@ import AddItem from "./AddItem";
 import Course from "../static/Course";
 import darkColors from "../static/darkColors";
 import lightColors from "../static/lightColors";
-import Manager from "./Manager";
 
 function Table() {
   //coloring
@@ -59,6 +59,8 @@ function Table() {
           }
           return prev;
         });
+        console.log(table);
+
   };
 
   // force rerender
@@ -74,7 +76,6 @@ function Table() {
       return prev;
     });
     forceUpdate();
-    console.log(table);
   };
 
   return (
@@ -88,12 +89,17 @@ function Table() {
       <Header />
       <Box display="flex" flexDir="row" mt="5" mb="20">
         <AddItem handleTable={handleTable} />
-        <Manager
-          textColor={empty}
-          color={addButtonColor}
-          type="Add"
-          handler={() => forceUpdate()}
-        />
+        <Button
+          onClick={() => forceUpdate()}
+          mt="6"
+          ml="9"
+          color={empty}
+          backgroundColor={addButtonColor}
+          _hover={{ background: addButtonColor }}
+          _focus={{ _focus: "none" }}
+        >
+          Add
+        </Button>
       </Box>
 
       <Grid templateColumns="repeat(9,1fr)">

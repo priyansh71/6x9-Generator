@@ -4,7 +4,7 @@ const darkColors = [
     "cyan.900",
     "blue.900",
     "teal.900",
-    "green.800",
+    "green.900",
     "orange.900",
     "red.900",
 ]
