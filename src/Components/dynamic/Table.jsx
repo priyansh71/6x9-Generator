@@ -9,29 +9,29 @@ import {
   GridItem,
   Center,
   Box,
-  Container,
 } from "@chakra-ui/react";
-
+import { MinusIcon } from "@chakra-ui/icons";
 import Header from "./Header";
 import AddItem from "./AddItem";
 import Course from "../static/Course";
 import darkColors from "../static/darkColors";
 import lightColors from "../static/lightColors";
-import RemoveItem from "./RemoveItem";
 import Manager from "./Manager";
 
 function Table() {
+  //coloring
   const { colorMode } = useColorMode();
-  let [days, time] = [6, 9];
   const borderColor = useColorModeValue("gray.800", "gray.100");
   const addButtonColor = useColorModeValue("teal.600", "teal.200");
-  const removeButtonColor = useColorModeValue("red.700", "red.300");
   const empty = useColorModeValue("gray.100", "gray.800");
+
+  // array handling
+  let [days, time] = [6, 9];
   const [table, setTable] = useState(Array(time * days).fill(null));
 
   const handleTable = (value) => {
     const course = Course.find((item) => item.ID === value);
-    console.clear();
+    // console.clear();
     let hour = course.Hour;
     let randomDark = darkColors[Math.floor(Math.random() * darkColors.length)];
     let randomLight =
@@ -61,7 +61,21 @@ function Table() {
         });
   };
 
+  // force rerender
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
+
+  const handleRemove = (id) => {
+    setTable((prev) => {
+      prev.forEach((element, index) => {
+        if (element && id === element.ID) {
+          prev[index] = null;
+        }
+      });
+      return prev;
+    });
+    forceUpdate();
+    console.log(table);
+  };
 
   return (
     <Flex
@@ -72,26 +86,15 @@ function Table() {
       mb="2"
     >
       <Header />
-      <Container display="flex" alignItems="center" flexDir="column" mb="10">
-        <Box display="flex" flexDir="row">
-          <AddItem handleTable={handleTable} />
-          <Manager
-            textColor={empty}
-            color={addButtonColor}
-            type="Add"
-            handler={() => forceUpdate()}
-          />
-        </Box>
-        <Box display="flex" flexDir="row" alignItems="center">
-          <RemoveItem />
-          <Manager
-            textColor={empty}
-            color={removeButtonColor}
-            type="Remove"
-            handler={() => forceUpdate()}
-          />
-        </Box>
-      </Container>
+      <Box display="flex" flexDir="row" mt="5" mb="20">
+        <AddItem handleTable={handleTable} />
+        <Manager
+          textColor={empty}
+          color={addButtonColor}
+          type="Add"
+          handler={() => forceUpdate()}
+        />
+      </Box>
 
       <Grid templateColumns="repeat(9,1fr)">
         {table.map((item, index) => {
@@ -116,6 +119,14 @@ function Table() {
                 {item.Code}
                 <br />
                 {item.Type}
+                <MinusIcon
+                  onClick={() => handleRemove(item.ID)}
+                  position="relative"
+                  top="-5"
+                  right="-3"
+                  fontSize="1em"
+                  color={empty}
+                />
               </Center>
             </GridItem>
           ) : (
