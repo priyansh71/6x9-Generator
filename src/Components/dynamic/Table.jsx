@@ -8,13 +8,12 @@ import {
   Grid,
   GridItem,
   Center,
-  Button,
   Box,
 } from "@chakra-ui/react";
 import { MinusIcon } from "@chakra-ui/icons";
 import Header from "./Header";
 import AddItem from "./AddItem";
-import Course from "../static/Course";
+import Course from "../static/Course.js";
 import darkColors from "../static/darkColors";
 import lightColors from "../static/lightColors";
 
@@ -30,37 +29,31 @@ function Table() {
   const [table, setTable] = useState(Array(time * days).fill(null));
 
   const handleTable = (value) => {
-    const course = Course.find((item) => item.ID === value);
-    // console.clear();
-    let hour = course.Hour;
-    let randomDark = darkColors[Math.floor(Math.random() * darkColors.length)];
-    let randomLight =
-      lightColors[Math.floor(Math.random() * lightColors.length)];
-    course.Type === "Lecture" || "Tutorial"
-      ? setTable((prev) => {
-          let i;
-          for (i = 0; i < course.Repeat - 1; i++) {
-            hour[i + 1] = 2 * time + hour[i];
-          }
-          for (i = 0; i < 3; i++) {
-            prev[hour[i]] = course;
-            Object.assign(course, { darkColor: randomDark });
-            Object.assign(course, { lightColor: randomLight });
-          }
+    const course = Course.find((item) => item.Name === value);
+    if (course) {
+      let hour = course.Hour;
+      let randomDark =
+        darkColors[Math.floor(Math.random() * darkColors.length)];
+      let randomLight =
+        lightColors[Math.floor(Math.random() * lightColors.length)];
+        setTable((prev) => {
+            let i;
+            for (i = 0; i < course.Repeat - 1; i++) {
+              course.Type === "Lab"
+              ? 
+              hour[i+1] = hour[i] + 1
+              :
+              hour[i + 1] = 2 * time + hour[i]
+            }
+            for (i = 0; i < 3; i++) {
+              prev[hour[i]] = course;
+              Object.assign(course, { darkColor: randomDark });
+              Object.assign(course, { lightColor: randomLight });
+            }
 
-          return prev;
-        })
-      : setTable((prev) => {
-          let i;
-          for (i = 0; i < 3; i++) {
-            prev[hour[i]] = course;
-            Object.assign(course, { darkColor: randomDark });
-            Object.assign(course, { lightColor: randomLight });
-          }
-          return prev;
-        });
-        console.log(table);
-
+            return prev;
+          })
+    }
   };
 
   // force rerender
@@ -88,18 +81,12 @@ function Table() {
     >
       <Header />
       <Box display="flex" flexDir="row" mt="5" mb="20">
-        <AddItem handleTable={handleTable} />
-        <Button
-          onClick={() => forceUpdate()}
-          mt="6"
-          ml="9"
-          color={empty}
-          backgroundColor={addButtonColor}
-          _hover={{ background: addButtonColor }}
-          _focus={{ _focus: "none" }}
-        >
-          Add
-        </Button>
+        <AddItem
+          handleTable={handleTable}
+          handleState={() => forceUpdate()}
+          textColor={empty}
+          color={addButtonColor}
+        />
       </Box>
 
       <Grid templateColumns="repeat(9,1fr)">
