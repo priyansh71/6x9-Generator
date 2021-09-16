@@ -1,5 +1,8 @@
 import json,csv
 
+lunchHour = 13
+labHourLength = 2
+
 def dayNum(day):
     if day == 'M': 
         num = 0
@@ -32,30 +35,36 @@ with open('Courses.csv', 'r') as read_obj:
     i = 1
     for row in csv_reader:
         hourArray = []
-        index = int(row[0])
-        code = row[1]
-        name = row[2]
-        classType = row[-1]
-        firstDay = row[3].split(',')[0]
+        index = i
+        code = row[0]
+        name = row[1]
+        classType = row[4]
+
+        firstDay = row[2].split(',')[0]
         numberOfDay = dayNum(firstDay) 
-        firstHour = row[-2]
+        firstHour = row[3]
         firstHour = int(firstHour)
-        if firstHour >= 14 :
+        if firstHour >= lunchHour + 1 :
             firstHour -= 1
         hour = numberOfDay * 9 + (firstHour - 8)
         hourArray.append(hour)
+
         if checker(classType):
-            repeat = len(row[3].split(',')) + 1
+                repeat = len(row[2].split(',')) + labHourLength - 1
         else:
-            repeat = len(row[3].split(','))
+            repeat = len(row[2].split(','))
+
+        Instructor = row[5]
         array.append({
             "ID" : index,   
             "Code" : code,
             "Name" : name,
             "Type" : classType,
             "Hour" : hourArray,
-            "Repeat" : repeat
+            "Repeat" : repeat,
+            "Section" : Instructor
           })
+        i+=1
         
 
 with open('file.js', "w") as writeJSON:

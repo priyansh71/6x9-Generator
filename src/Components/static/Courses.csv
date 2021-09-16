@@ -1,13 +1,13 @@
-Index,Code,Name,Days,Time,Type
-1,MATHF211,Mathematics III,"M,W,F",12,Lecture
-2,MATHF211,Mathematics III Tutorial,M,8,Tutorial
-3,CSF222,Discrete Math for CS,"M,W,F",10,Lecture
-4,CSF222,Discrete Math Tutorial,W,8,Tutorial
-5,CSF214,Logic in CS,"M,W,F",11,Lecture
-6,CSF214,Logic in CS Tutorial,T,8,Tutorial
-7,CSF215,Digital Design,"M,W,F",9,Lecture
-8,CSF215,Digital Design Tutorial,F,17,Tutorial
-9,CSF215,Digital Design Lab,T,"14",Lab
-10,GSF322,Critical Analysis of Literature and Cinema,"T,Th,S",9,Lecture
-11,CSF213,Object Oriented Programming,"T,Th,S",10,Lecture
-12,CSF213,Object Oriented Programming Lab,Th,"16",Lab
+Code,Name,Days,Time,Type,Section
+MATHF211,Mathematics III,"M,W,F",12,Lecture,JK Sahoo
+MATHF211,Mathematics III Tutorial,M,8,Tutorial,Monalisa
+CSF222,Discrete Math for CS,"M,W,F",10,Lecture,Anup Basil Mathew
+CSF222,Discrete Math Tutorial,W,8,Tutorial,Teaching Assistants
+CSF214,Logic in CS,"M,W,F",11,Lecture,A Baskar
+CSF214,Logic in CS Tutorial,T,8,Tutorial,A Baskar
+CSF215,Digital Design,"M,W,F",9,Lecture,Ravi Kadlimatti
+CSF215,Digital Design Tutorial,F,17,Tutorial,Ravi Kadlimatti
+CSF215,Digital Design Lab,T,14,Lab,Hrishikesh Sonalikar
+GSF322,Critical Analysis of Literature and Cinema,"T,Th,S",9,Lecture,Geeta B
+CSF213,Object Oriented Programming,"T,Th,S",10,Lecture,Neena Goveas
+CSF213,Object Oriented Programming Lab,Th,16,Lab,Group - 8
