@@ -13,9 +13,11 @@ import {
 import { MinusIcon } from "@chakra-ui/icons";
 import Header from "./Header";
 import AddItem from "./AddItem";
-import Course from "../static/Course.js";
+import Course from "../static/file";
 import darkColors from "../static/darkColors";
 import lightColors from "../static/lightColors";
+import Time from "./Time";
+import Days from "./Days";
 
 function Table() {
   //coloring
@@ -76,11 +78,10 @@ function Table() {
       alignItems="center"
       justifyContent="center"
       flexDirection="column"
-      mt="1"
       mb="2"
     >
       <Header />
-      <Box display="flex" flexDir="row" mt="5" mb="20">
+      <Box display="flex" flexDir="row" mt="5" mb="-10">
         <AddItem
           handleTable={handleTable}
           handleState={() => forceUpdate()}
@@ -88,8 +89,9 @@ function Table() {
           color={addButtonColor}
         />
       </Box>
-
-      <Grid templateColumns="repeat(9,1fr)">
+      <Days />
+      <Time />
+       <Grid templateColumns="repeat(9,1fr)" position="relative" left="4vw">
         {table.map((item, index) => {
           return item ? (
             <GridItem
