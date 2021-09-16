@@ -8,18 +8,25 @@ const Time = () => {
   const text = useColorModeValue("gray.900", "gray.100");
 
   return (
-    <Grid h="100px" templateColumns="repeat(9, 1fr)" position="relative" left="4vw" top="0.5">
+    <Grid className="TimeRow" h="80px" templateColumns="repeat(9, 1fr)" position="relative" display="flex" flexDir="row" alignItems="flex-end" left="4vw" >
       {time.map((item, index) => {
         return (
           <GridItem
           key={index}
             gap={2}
-            h="85px"
-            w="9vw"
+            h="9vh"
+            width={["9vw" , "9vw", "9vw"]}
             borderWidth="0.5px"
             borderColor={text}
             backgroundColor="transparent"
             textColor={text}
+            display={{
+              xs : "none",
+              sm : "none",
+              md : "block",
+              lg : "block"
+        
+            }}
           >
             <Center
               position="relative"

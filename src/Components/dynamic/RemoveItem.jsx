@@ -4,59 +4,48 @@ import React, { useState } from "react";
 import { Input, useColorModeValue, Button } from "@chakra-ui/react";
 import Course from "../static/file";
 
-const AddItem = (props) => {
-  const [value, setValue] = useState("");
+const RemoveItem = (props) => {
+  const [setter, setsetter] = useState("");
   const box = useColorModeValue("gray.400", "gray.200");
   const focus = useColorModeValue("gray.500", "gray.100");
 
-  const handler = () => {
-    if (value) {
-      props.handleTable(value);
+  const handleDelete = () => {
+    if (setter) {
+      props.handleRemove(setter);
       props.handleState();
+      console.log(setter);
     }
-    setValue("");
-  };
-
-  const handleKey = (e) => {
-    if (e.key === "Enter") {
-      handler();
-    }
+    setsetter("");
   };
 
   return (
-    <div>
+    <div style={{display : "flex" , flexDirection : "row"}}>
       <Input
-        list="courses"
-        id="selector"
-        w={["50vw", "45vw", "40vw"]}
+        list="remover"
+        w={["0px", "50vw", "50vw"]}
         type="text"
         borderWidth="thin"
-        listStyleImg="revert"
-        mt="3"
+        mt="5"
         px="1em"
         py="1.25em"
-        placeholder="Search Courses"
+        placeholder="Remove Courses"
         borderColor={box}
         errorBorderColor="crimson"
         focusBorderColor={focus}
-        onChange={(e) => setValue(e.target.value)}
-        value={value}
+        onChange={(e) => setsetter(e.target.value)}
+        value={setter}
         variant="outline"
-        onKeyPress={handleKey}
-        display ={{
+        display={{
           xs : "none",
           sm : "none",
-          md : "inline-block",
-          lg : "inline-block"
+          md : "block",
+          lg : "none"
+    
         }}
       />
-      <datalist id="courses">
+      <datalist id="remover">
         {Course.map((item, index) => {
-          return item.Section ? (
-            <option value={item.Name} key={index}>
-              { item.Code + " - " +  item.Section}
-            </option>
-          ) : (
+          return (
             <option value={item.Name} key={index}>
               {item.Code}
             </option>
@@ -64,23 +53,24 @@ const AddItem = (props) => {
         })}
       </datalist>
       <Button
-        onClick={handler}
+        onClick={handleDelete}
         ml={["20px", "30px", "40px"]}
         color={props.textColor}
+        mt="5"
         backgroundColor={props.color}
         _hover={{ background: props.color }}
         _focus={{ _focus: "none" }}
-        display ={{
-          xs : "none",
+        display={{
           sm : "none",
-          md : "inline-block",
-          lg : "inline-block"
+          md : "block",
+          lg : "none"
+    
         }}
       >
-        Add
+        Remove
       </Button>
     </div>
   );
 };
 
-export default AddItem;
+export default RemoveItem;

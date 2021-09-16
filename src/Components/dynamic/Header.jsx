@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <label htmlFor="selector" style={{userSelect : "none"}}>
     <Center my="4">
-      <Text fontSize="3xl" color={box}>
+      <Text fontSize={["25px", "30px", "38px"]} color={box}>
         Time-Table Renderer
       </Text>
     </Center>
