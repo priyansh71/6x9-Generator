@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Input, useColorModeValue, Button } from "@chakra-ui/react";
-import Course from "../static/file";
+import Course from "../static/Course";
 
 const AddItem = (props) => {
   const [value, setValue] = useState("");
@@ -33,14 +33,14 @@ const AddItem = (props) => {
         borderWidth="thin"
         listStyleImg="revert"
         mt="3"
-        px="1em"
-        py="1.25em"
+        p="1em"
         placeholder="Search Courses"
         borderColor={box}
         errorBorderColor="crimson"
         focusBorderColor={focus}
         onChange={(e) => setValue(e.target.value)}
         value={value}
+        _placeholder={{color : focus}}
         variant="outline"
         onKeyPress={handleKey}
         display ={{
@@ -50,15 +50,15 @@ const AddItem = (props) => {
           lg : "inline-block"
         }}
       />
-      <datalist id="courses">
+      <datalist id="courses" >
         {Course.map((item, index) => {
           return item.Section ? (
-            <option value={item.Name} key={index}>
-              { item.Code + " - " +  item.Section}
+            <option value={item.Name} key={index} >
+              {item.Code} {item.Type} : {item.Section}
             </option>
           ) : (
-            <option value={item.Name} key={index}>
-              {item.Code}
+            <option value={item.Name} key={index} >
+              {item.Code} {item.Type}
             </option>
           );
         })}

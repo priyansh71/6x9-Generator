@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Input, useColorModeValue, Button } from "@chakra-ui/react";
-import Course from "../static/file";
+import Course from "../static/Course";
 
 const RemoveItem = (props) => {
   const [setter, setsetter] = useState("");
@@ -18,21 +18,27 @@ const RemoveItem = (props) => {
     setsetter("");
   };
 
+  const handleKey = (e) => {
+    if (e.key === "Enter") {
+      handleDelete();
+    }
+  };
+
   return (
     <div style={{display : "flex" , flexDirection : "row"}}>
       <Input
         list="remover"
-        w={["0px", "50vw", "50vw"]}
+        w={["50vw", "45vw", "40vw"]}
         type="text"
         borderWidth="thin"
         mt="5"
-        px="1em"
-        py="1.25em"
+        p="1em"
         placeholder="Remove Courses"
         borderColor={box}
         errorBorderColor="crimson"
         focusBorderColor={focus}
         onChange={(e) => setsetter(e.target.value)}
+        _placeholder={{ color: focus}}
         value={setter}
         variant="outline"
         display={{
@@ -40,14 +46,18 @@ const RemoveItem = (props) => {
           sm : "none",
           md : "block",
           lg : "none"
-    
         }}
+        onKeyPress={handleKey}
       />
       <datalist id="remover">
-        {Course.map((item, index) => {
-          return (
-            <option value={item.Name} key={index}>
-              {item.Code}
+      {Course.map((item, index) => {
+          return item.Section ? (
+            <option value={item.Name} key={index} >
+              {item.Code} {item.Type} : {item.Section}
+            </option>
+          ) : (
+            <option value={item.Name} key={index} >
+              {item.Code} {item.Type}
             </option>
           );
         })}

@@ -2,26 +2,18 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App.jsx";
+import Table from "./Table.jsx";
+import theme from "./theme";
 import { ChakraProvider } from "@chakra-ui/react";
-import { extendTheme } from "@chakra-ui/react"
-import { createBreakpoints } from "@chakra-ui/theme-tools"
-// 2. Update the breakpoints as key-value pairs
-const breakpoints = createBreakpoints({
-  xs : "0px",
-  sm: "500px",
-  md: "700px",
-  lg: "1050px"
-})
-// 3. Extend the theme
-const theme = extendTheme({ breakpoints })
+import ColorMode from "./Components/dynamic/ColorMode";
+import Warning from "./Components/dynamic/Warning";
 
 ReactDOM.render(
     <ChakraProvider theme={theme}>
-      <App />
+      <ColorMode />
+      <Warning />
+      <Table />
     </ChakraProvider>,
   document.getElementById("root")
 );
 
-export default App;

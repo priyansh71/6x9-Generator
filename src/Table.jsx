@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useState, useReducer } from "react";
 import {
   Flex,
@@ -11,14 +9,14 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { MinusIcon } from "@chakra-ui/icons";
-import Header from "./Header";
-import AddItem from "./AddItem";
-import Course from "../static/file";
-import darkColors from "../static/darkColors";
-import lightColors from "../static/lightColors";
-import Time from "./Time";
-import Days from "./Days";
-import RemoveItem from "./RemoveItem";
+import Header from "./Components/dynamic/Header";
+import AddItem from "./Components/dynamic/AddItem";
+import Course from "./Components/static/Course";
+import darkColors from "./Components/static/darkColors";
+import lightColors from "./Components/static/lightColors";
+import Time from "./Components/dynamic/Time";
+import Days from "./Components/dynamic/Days";
+import RemoveItem from "./Components/dynamic/RemoveItem";
 
 function Table() {
   //coloring
@@ -120,10 +118,12 @@ function Table() {
               opacity="0.95"
               w={["50px", "9vw"]}
               borderColor="transparent"
+              fontFamily="Fira Code"
               backgroundColor={
                 colorMode === "light" ? item.darkColor : item.lightColor
               }
               color={empty}
+              fontWeight="900"
             >
               <Center
                 position="relative"
@@ -134,7 +134,6 @@ function Table() {
                   md : "11px",
                   lg: "0.84em"
                 }}
-                fontWeight="bold"
                 verticalAlign="center"
                 mx="2"
                 my="auto"
@@ -145,7 +144,7 @@ function Table() {
                 <MinusIcon
                   onClick={() => handleRemove(item.Name)}
                   position="relative"
-                  top="-7"
+                  top="-6"
                   right="-3"
                   display={{
                     xs : "none",
