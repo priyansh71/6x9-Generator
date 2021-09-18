@@ -14,7 +14,7 @@ const Time = () => {
           <GridItem
           key={index}
             gap={2}
-            h="9vh"
+            h={["72.2px"]}
             width={["9vw" , "9vw", "9vw"]}
             borderWidth="0.5px"
             borderColor={text}

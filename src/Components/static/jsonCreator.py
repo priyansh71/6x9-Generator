@@ -39,22 +39,23 @@ with open('Courses.csv', 'r') as read_obj:
         code = row[0]
         name = row[1]
         classType = row[4]
-
         firstDay = row[2].split(',')[0]
-        numberOfDay = dayNum(firstDay) 
-        firstHour = row[3]
-        firstHour = int(firstHour)
+        numberOfDay = dayNum(firstDay)
+        if checker(classType):
+            repeat = int(row[3].split('-')[1]) - int(row[3].split('-')[0])
+            firstHour = int(row[3].split('-')[0] )
+        else:
+            repeat = len(row[2].split(','))
+            firstHour = int(row[3])
+
         if firstHour >= lunchHour + 1 :
             firstHour -= 1
         hour = numberOfDay * 9 + (firstHour - 8)
         hourArray.append(hour)
 
-        if checker(classType):
-                repeat = len(row[2].split(',')) + labHourLength - 1
-        else:
-            repeat = len(row[2].split(','))
-
-        Instructor = row[5]
+        
+        if isinstance(row[5], str):
+            Instructor = row[5]
         array.append({
             "ID" : index,   
             "Code" : code,
@@ -67,7 +68,7 @@ with open('Courses.csv', 'r') as read_obj:
         i+=1
         
 
-with open('file.js', "w") as writeJSON:
+with open('Course.js', "w") as writeJSON:
     writeJSON.write('const Course = \n')
     json.dump(array, writeJSON, ensure_ascii=False)
     writeJSON.write('\n')

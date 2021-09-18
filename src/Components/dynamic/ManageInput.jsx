@@ -8,8 +8,15 @@ const AddItem = (props) => {
   const [value, setValue] = useState("");
   const box = useColorModeValue("gray.400", "gray.200");
   const focus = useColorModeValue("gray.500", "gray.100");
+  const buttonDisplay = {
+    xs: "none",
+    sm : "none",
+    md : "inline-block",
+    lg : "inline-block"
 
-  const handler = () => {
+  }
+
+  const handleAdd = () => {
     if (value) {
       props.handleTable(value);
       props.handleState();
@@ -19,8 +26,17 @@ const AddItem = (props) => {
 
   const handleKey = (e) => {
     if (e.key === "Enter") {
-      handler();
+      handleAdd();
     }
+  };
+
+  const handleDelete = () => {
+    if (value) {
+      props.handleRemove(value);
+      props.handleState();
+      console.log(value);
+    }
+    setValue("");
   };
 
   return (
@@ -64,21 +80,27 @@ const AddItem = (props) => {
         })}
       </datalist>
       <Button
-        onClick={handler}
+        onClick={handleAdd}
         ml={["20px", "30px", "40px"]}
         color={props.textColor}
-        backgroundColor={props.color}
+        backgroundColor={props.addColor}
         _hover={{ background: props.color }}
         _focus={{ _focus: "none" }}
-        display ={{
-          xs : "none",
-          sm : "none",
-          md : "inline-block",
-          lg : "inline-block"
-        }}
+        display ={buttonDisplay}
       >
         Add
       </Button>
+      <Button
+        onClick={handleDelete}
+        ml={["20px", "30px", "40px"]}
+        color={props.textColor}
+        backgroundColor={props.removeColor}
+        _hover={{ background: props.color }}
+        _focus={{ _focus: "none" }}
+        display ={buttonDisplay}
+      >
+        Remove
+        </Button>
     </div>
   );
 };

@@ -8,15 +8,16 @@ import {
   Center,
   Box,
 } from "@chakra-ui/react";
-import { MinusIcon } from "@chakra-ui/icons";
+import { DeleteIcon } from "@chakra-ui/icons";
 import Header from "./Components/dynamic/Header";
-import AddItem from "./Components/dynamic/AddItem";
+import ManageInput from "./Components/dynamic/ManageInput";
 import Course from "./Components/static/Course";
 import darkColors from "./Components/static/darkColors";
 import lightColors from "./Components/static/lightColors";
 import Time from "./Components/dynamic/Time";
 import Days from "./Components/dynamic/Days";
-import RemoveItem from "./Components/dynamic/RemoveItem";
+import ColorMode from "./Components/dynamic/Modal";
+
 
 function Table() {
   //coloring
@@ -72,6 +73,8 @@ function Table() {
   };
 
   return (
+    <div>
+    <ColorMode handling={() => setTable(Array(time * days).fill(null))} />
     <Flex
       alignItems="center"
       justifyContent="center"
@@ -79,20 +82,15 @@ function Table() {
       mb="2"
     >
       <Header />
-      <Box display="flex" flexDir="column" mt="5" mb="10">
-
-        <AddItem
+      <Box display="flex" mt="5" mb="10">
+        <ManageInput
           handleTable={handleTable}
           handleState={() => forceUpdate()}
           textColor={empty}
-          color={addButtonColor}
-        />
+          addColor={addButtonColor}
+          removeColor={removeButtonColor}
+          handleRemove={handleRemove}
 
-        <RemoveItem
-          handleRemove={(thing) => handleRemove(thing)}
-          handleState={() => forceUpdate()}
-          textColor={empty}
-          color={removeButtonColor}
         />
       </Box>
       <Time />
@@ -114,7 +112,7 @@ function Table() {
           return item ? (
             <GridItem
               key={index}
-              h={["50px", "9vh"]}
+              h={["72.2px"]}
               opacity="0.95"
               w={["50px", "9vw"]}
               borderColor="transparent"
@@ -141,11 +139,12 @@ function Table() {
                 {item.Code}
                 <br />
                 {item.Type}
-                <MinusIcon
+                <DeleteIcon
                   onClick={() => handleRemove(item.Name)}
                   position="relative"
-                  top="-6"
-                  right="-3"
+                  top="-5"
+                  right="-0.5"
+                  m="0.5"
                   display={{
                     xs : "none",
                     sm : "none",
@@ -154,6 +153,7 @@ function Table() {
                   }}
                   color={empty}
                   fontSize="1em"
+                  cursor="pointer"
 
                 />
               </Center>
@@ -161,7 +161,7 @@ function Table() {
           ) : (
             <GridItem
               key={index}
-              h="9vh"
+              h={["72.2px"]}
               w="9vw"
               borderWidth="0.02px"
               borderColor={borderColor}
@@ -171,6 +171,7 @@ function Table() {
         })}
       </Grid>
     </Flex>
+    </div>
   );
 }
 

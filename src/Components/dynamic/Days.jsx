@@ -19,14 +19,13 @@ const Days = () => {
       }}
       position="relative"
       left="-40.5vw"
-      top=""
     >
       {days.map((item, index) => {
         return (
           <GridItem
             key={index}
             gap={1}
-            h="9vh"
+            h={["72.2px"]}
             w={["50px", "100px", "123px"]}
             border="1px"
             borderColor={text}
