@@ -6,9 +6,11 @@ import {
   Grid,
   GridItem,
   Center,
+  Tooltip,
+  Icon,
   Box,
 } from "@chakra-ui/react";
-import { DeleteIcon } from "@chakra-ui/icons";
+import { MinusIcon } from "@chakra-ui/icons";
 import Header from "./Components/dynamic/Header";
 import ManageInput from "./Components/dynamic/ManageInput";
 import Course from "./Components/static/Course";
@@ -23,9 +25,10 @@ function Table() {
   //coloring
   const { colorMode } = useColorMode();
   const borderColor = useColorModeValue("gray.800", "gray.100");
-  const addButtonColor = useColorModeValue("teal.600", "teal.200");
+  const addButtonColor = useColorModeValue("teal.700", "green.100");
   const removeButtonColor = useColorModeValue("red.600", "red.200");
   const empty = useColorModeValue("gray.100", "gray.800");
+  const reload = useColorModeValue("blue.900", "cyan.300");
 
   // array handling
   let [days, time] = [6, 9];
@@ -74,7 +77,7 @@ function Table() {
 
   return (
     <div>
-    <ColorMode handling={() => setTable(Array(time * days).fill(null))} />
+    <ColorMode  />
     <Flex
       alignItems="center"
       justifyContent="center"
@@ -82,7 +85,7 @@ function Table() {
       mb="2"
     >
       <Header />
-      <Box display="flex" mt="5" mb="10">
+      <Box display="flex" mt="5" mb="5" flexDir="row" justifyContent="flex-start">
         <ManageInput
           handleTable={handleTable}
           handleState={() => forceUpdate()}
@@ -92,6 +95,29 @@ function Table() {
           handleRemove={handleRemove}
 
         />
+
+      <Tooltip label="Reset the table">
+        <Icon
+          ml="8"
+          my="5"
+          color={reload}
+          fontSize="2.65em"
+          fontWeight="bold"
+          onClick={() => setTable(Array(time * days).fill(null))}
+          cursor="pointer"
+          display={{
+            xs: "none",
+            sm: "none",
+            md: "block",
+            lg: "block",
+          }}
+        >
+          <path
+            fill="currentColor"
+            d="M13.6,2.4 C12.2,0.9 10.2,0 8,0 C3.6,0 0,3.6 0,8 C0,12.4 3.6,16 8,16 C11.7,16 14.8,13.4 15.7,10 L13.6,10 C12.8,12.3 10.6,14 8,14 C4.7,14 2,11.3 2,8 C2,4.7 4.7,2 8,2 C9.7,2 11.1,2.7 12.2,3.8 L9,7 L16,7 L16,0 L13.6,2.4 L13.6,2.4 Z"
+          />
+        </Icon>
+      </Tooltip>
       </Box>
       <Time />
       <Days />
@@ -130,21 +156,16 @@ function Table() {
                   xs : "0",
                   sm : "0",
                   md : "11px",
-                  lg: "0.84em"
+                  lg: "0.82em"
                 }}
-                verticalAlign="center"
-                mx="2"
-                my="auto"
-              >
+                              >
                 {item.Code}
                 <br />
                 {item.Type}
-                <DeleteIcon
+                <MinusIcon
                   onClick={() => handleRemove(item.Name)}
                   position="relative"
-                  top="-5"
-                  right="-0.5"
-                  m="0.5"
+                  transform="translate(80%,-120%)"
                   display={{
                     xs : "none",
                     sm : "none",
@@ -152,7 +173,7 @@ function Table() {
                     lg: "block"
                   }}
                   color={empty}
-                  fontSize="1em"
+                  fontSize="1.09em"
                   cursor="pointer"
 
                 />

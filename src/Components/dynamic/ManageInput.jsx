@@ -7,7 +7,7 @@ import Course from "../static/Course";
 const AddItem = (props) => {
   const [value, setValue] = useState("");
   const box = useColorModeValue("gray.400", "gray.200");
-  const focus = useColorModeValue("gray.500", "gray.100");
+  const focus = useColorModeValue("gray.600", "gray.100");
   const buttonDisplay = {
     xs: "none",
     sm : "none",
@@ -34,7 +34,6 @@ const AddItem = (props) => {
     if (value) {
       props.handleRemove(value);
       props.handleState();
-      console.log(value);
     }
     setValue("");
   };
@@ -44,7 +43,7 @@ const AddItem = (props) => {
       <Input
         list="courses"
         id="selector"
-        w={["50vw", "45vw", "40vw"]}
+        w={["50vw", "45vw", "30vw"]}
         type="text"
         borderWidth="thin"
         listStyleImg="revert"
@@ -81,7 +80,7 @@ const AddItem = (props) => {
       </datalist>
       <Button
         onClick={handleAdd}
-        ml={["20px", "30px", "40px"]}
+        ml={["20px", "30px", "35px"]}
         color={props.textColor}
         backgroundColor={props.addColor}
         _hover={{ background: props.color }}
@@ -92,7 +91,7 @@ const AddItem = (props) => {
       </Button>
       <Button
         onClick={handleDelete}
-        ml={["20px", "30px", "40px"]}
+        ml={["20px", "30px", "30px"]}
         color={props.textColor}
         backgroundColor={props.removeColor}
         _hover={{ background: props.color }}
