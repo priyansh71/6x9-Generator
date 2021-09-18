@@ -20,11 +20,6 @@ def dayNum(day):
         num = None
     return num
 
-def checker(element):
-    if element == "Lab":
-        return True
-    else:
-        return False
 
 array = []
 
@@ -38,14 +33,21 @@ with open('Courses.csv', 'r') as read_obj:
         index = i
         code = row[0]
         name = row[1]
-        classType = row[4]
-        firstDay = row[2].split(',')[0]
-        numberOfDay = dayNum(firstDay)
-        if checker(classType):
+        numberOfDay = dayNum(row[2])
+        try:
+            if row[4].split(',')[0] != "Lecture":
+                row[4].split(',')[1] = 1
+        except:
+            pass
+        classtype = row[4].split(',')[0] 
+        if classtype == "Lab":
             repeat = int(row[3].split('-')[1]) - int(row[3].split('-')[0])
             firstHour = int(row[3].split('-')[0] )
+        elif classtype == "Lecture" :
+            repeat = row[4].split(',')[1]
+            firstHour = int(row[3])
         else:
-            repeat = len(row[2].split(','))
+            repeat = 1
             firstHour = int(row[3])
 
         if firstHour >= lunchHour + 1 :
@@ -60,7 +62,7 @@ with open('Courses.csv', 'r') as read_obj:
             "ID" : index,   
             "Code" : code,
             "Name" : name,
-            "Type" : classType,
+            "Type" : classtype,
             "Hour" : hourArray,
             "Repeat" : repeat,
             "Section" : Instructor
