@@ -1,5 +1,5 @@
-## [6x9 Generator](https://github.com/priyansh71/6x9-Generator/)
-### This project is made for AUGSD Software Team Inductions , 2021.
+## [6x9 Generator](https://priyansh71.github.io/6x9-Generator/)
+#### This project is made for AUGSD Software Team Inductions , 2021.
 
 **To run the project  :-**
 - default configuration

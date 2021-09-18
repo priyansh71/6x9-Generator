@@ -4,7 +4,7 @@ import React from "react";
 import { Grid, GridItem, Center, useColorModeValue } from "@chakra-ui/react";
 
 const Days = () => {
-  const days = ["Monday", "Tuesday", "Wednes", "Thursday", "Friday", "Saturday"];
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   const text = useColorModeValue("gray.900", "gray.100");
   return (
     <Grid
