@@ -1,6 +1,7 @@
 ### Making a ```Courses.csv```
 
-**Please refer the example (default) file provided here** [here](https://github.com/priyansh71/6x9-Generator/blob/main/src/Components/static/Courses.csv)
+**Please refer the example (default) file provided [here](https://github.com/priyansh71/6x9-Generator/blob/main/src/Components/static/Courses.csv).** 
+
 
 It takes in the following columns in order :-
 -  `Code` - (mandatory, need not be unique, String) Use the Course code as this value.
@@ -10,7 +11,7 @@ It takes in the following columns in order :-
     - Example :- T (Tuesday series) [refer `Type` column for more information]
 -  `Time`- (mandatory, 24 hour format, integer) 
      - Enter starting hour of Lecture/Tutorial here.
-     - All labs rows require time as `starting hour - ending hour` format
+     - Lab rows require time in `starting hour - ending hour` format
 - `Type` - (mandatory) Takes the following values
     -  `Lecture , int` (where int is the amount of time this class repeats in a week)
        - Example :- Lecture, 2 in above mentioned example means the lecture occurs on Tuesday and Thursday only.
