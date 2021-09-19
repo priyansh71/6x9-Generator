@@ -34,5 +34,5 @@ npm start
 - All lectures are 1 hour in duration and follow the series format i.e. Monday series, Tuesday series but the amount of time it occurs in the week (1,2,3) as such is customizable.
 - All tutorials are 1 hour in duration and occur once a week.
 - Labs time duration is customizable in the scipt ,  however they occur once a week.
-- Break timing is 13:00 - 14:00, this `lunchHour` variable can be changed [here](https://github.com/priyansh71/6x9-Generator/blob/0047bbf71816c08b258e9dee4af6659db87bab34/src/Components/static/index.py#L3).
+- Break timing is 13:00 - 14:00, this `lunchHour` variable can be changed [here](https://github.com/priyansh71/6x9-Generator/blob/77653fc005345277c0374d9e375ef57e4e9b64e4/src/Components/static/index.py#L3).
 - Sunday is a day off.
