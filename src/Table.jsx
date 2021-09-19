@@ -9,6 +9,7 @@ import {
   Tooltip,
   Icon,
   Box,
+  useToast
 } from "@chakra-ui/react";
 import { MinusIcon } from "@chakra-ui/icons";
 import Header from "./Components/dynamic/Header";
@@ -20,6 +21,7 @@ import Time from "./Components/dynamic/Time";
 import Days from "./Components/dynamic/Days";
 
 function Table() {
+  const toast = useToast();
   //coloring
   const { colorMode } = useColorMode();
   const borderColor = useColorModeValue("gray.800", "gray.100");
@@ -105,7 +107,19 @@ function Table() {
               color={reload}
               fontSize="2.65em"
               fontWeight="bold"
-              onClick={() => setTable(Array(time * days).fill(null))}
+              onClick={() => {
+                setTable(Array(time * days).fill(null))
+                toast({
+                  title: "Table has been reset.",
+                  status: "success",
+                  duration: 1200,
+                  isClosable: false,
+                  variant: "left-accent",
+                  position:"bottom"
+                  
+                })
+              }
+              }
               cursor="pointer"
               display={{
                 xs: "none",

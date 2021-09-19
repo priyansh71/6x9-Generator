@@ -1,10 +1,11 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Input, useColorModeValue, Button } from "@chakra-ui/react";
+import { Input, useColorModeValue, useToast, Button } from "@chakra-ui/react";
 import Course from "../static/Course";
 
 const AddItem = (props) => {
+  const toast = useToast();
   const [value, setValue] = useState("");
   const box = useColorModeValue("gray.400", "gray.200");
   const focus = useColorModeValue("gray.600", "gray.100");
@@ -21,6 +22,15 @@ const AddItem = (props) => {
       props.handleTable(value);
       props.handleState();
     }
+    else if(value === ""){
+      toast({
+        title: "No course to add!",
+        status: "warning",
+        duration: 1400,
+        isClosable: false,
+        variant: "subtle",
+      })
+    }
     setValue("");
   };
 
@@ -34,6 +44,15 @@ const AddItem = (props) => {
     if (value) {
       props.handleRemove(value);
       props.handleState();
+    }
+    else if(value === ""){
+      toast({
+        title: "No course to remove!",
+        status: "warning",
+        duration: 1400,
+        isClosable: false,
+        variant: "subtle"
+      })
     }
     setValue("");
   };
