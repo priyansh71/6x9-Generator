@@ -1,7 +1,6 @@
+## 6x9 Generator
+
 ### This project is made for AUGSD Software Team Inductions , 2021.
-
-**The applications works best on landscape mode or devices having width > 470px.**
-
 
 <img width="1397" alt="Screenshot 2021-09-19 at 13 45 51" src="https://user-images.githubusercontent.com/77532581/133920580-0c6abc72-4018-413a-8c86-4729f2a6e893.png">
 
@@ -26,6 +25,8 @@
 
 
 <img width="1397" alt="Screenshot 2021-09-19 at 14 18 22" src="https://user-images.githubusercontent.com/77532581/133921313-3bb0dd89-4ff1-48d8-acb1-44d9e1c9d36c.png">
+
+**The application works best in landscape mode or devices having screen-width >= 470px.**
 
 
 **To run the project  :-**
