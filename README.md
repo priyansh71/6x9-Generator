@@ -20,11 +20,11 @@ rm Courses.csv
    - add your own Courses.csv file ([Customization](https://github.com/priyansh71/6x9-Generator/blob/main/src/Components/static/README.md))
   
 ``` 
-python3 jsonCreator.py
+python3 index.py
 npm start
 ```
 **This application**
-- has its frontend made with React, Chakra-Ui while the data management is done with a [python script](https://github.com/priyansh71/6x9-Generator/blob/main/src/Components/static/jsonCreator.py)
+- has its frontend made with React, Chakra-Ui while the data management is done with a [python script](https://github.com/priyansh71/6x9-Generator/blob/main/src/Components/static/index.py)
 - takes in a non-clashing ```Courses.csv``` file and generates a .js file based on it
    - Refer [Customization](https://github.com/priyansh71/6x9-Generator/tree/main/src/Components/static/README.md) for steps on how to use a custom time-table.
 - returned .js file is used to render courses options to the frontend
@@ -34,5 +34,5 @@ npm start
 - All lectures are 1 hour in duration and follow the series format i.e. Monday series, Tuesday series but the amount of time it occurs in the week (1,2,3) as such is customizable.
 - All tutorials are 1 hour in duration and occur once a week.
 - Labs time duration is customizable in the scipt ,  however they occur once a week.
-- Break timing is 13:00 - 14:00, this `lunchHour` variable can be changed [here](https://github.com/priyansh71/6x9-Generator/blob/0047bbf71816c08b258e9dee4af6659db87bab34/src/Components/static/jsonCreator.py#L3).
+- Break timing is 13:00 - 14:00, this `lunchHour` variable can be changed [here](https://github.com/priyansh71/6x9-Generator/blob/0047bbf71816c08b258e9dee4af6659db87bab34/src/Components/static/index.py#L3).
 - Sunday is a day off.

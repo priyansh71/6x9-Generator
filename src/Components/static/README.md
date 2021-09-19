@@ -19,4 +19,4 @@ It takes in the following columns in order :-
 - `Section` - (not mandatory, need not be unique, String) Use your section number, instructor or group number as this value.
 
 
-**Make sure to run `python3 jsonCreator.py` after saving your .csv file.**
+**Make sure to run `python3 index.py` after saving your .csv file.**

@@ -12,7 +12,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-const Modal = () => {
+const IconManager = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const box = useColorModeValue("gray.900", "white");
   return (
@@ -49,7 +49,7 @@ const Modal = () => {
           />
         </Icon>
       </Link>
-      <Center mx="4" mb="2" position="absolute" bottom="0" right="0">
+      <Center mx="4" mb="0" position="absolute" bottom="2" right="0">
         <Text fontSize={["16px"]} color={box}>
           Copyright, Priyansh Vyas, 2021.
         </Text>
@@ -58,4 +58,4 @@ const Modal = () => {
   );
 };
 
-export default Modal;
+export default IconManager;

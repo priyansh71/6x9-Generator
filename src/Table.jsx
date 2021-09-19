@@ -18,8 +18,6 @@ import darkColors from "./Components/static/darkColors";
 import lightColors from "./Components/static/lightColors";
 import Time from "./Components/dynamic/Time";
 import Days from "./Components/dynamic/Days";
-import ColorMode from "./Components/dynamic/Modal";
-
 
 function Table() {
   //coloring
@@ -72,126 +70,132 @@ function Table() {
       });
       return prev;
     });
-     forceUpdate();
+    forceUpdate();
   };
 
   return (
     <div>
-    <ColorMode  />
-    <Flex
-      alignItems="center"
-      justifyContent="center"
-      flexDirection="column"
-      mb="2"
-    >
-      <Header />
-      <Box display="flex" mt="5" mb="5" flexDir="row" justifyContent="flex-start">
-        <ManageInput
-          handleTable={handleTable}
-          handleState={() => forceUpdate()}
-          textColor={empty}
-          addColor={addButtonColor}
-          removeColor={removeButtonColor}
-          handleRemove={handleRemove}
+      <Flex
+        alignItems="center"
+        justifyContent="center"
+        flexDirection="column"
+        mb="2"
+      >
+        <Header />
+        <Box
+          display="flex"
+          mt="5"
+          mb="5"
+          flexDir="row"
+          justifyContent="flex-start"
+        >
+          <ManageInput
+            handleTable={handleTable}
+            handleState={() => forceUpdate()}
+            textColor={empty}
+            addColor={addButtonColor}
+            removeColor={removeButtonColor}
+            handleRemove={handleRemove}
+          />
 
-        />
-
-      <Tooltip label="Reset the table">
-        <Icon
-          ml="8"
-          my="5"
-          color={reload}
-          fontSize="2.65em"
-          fontWeight="bold"
-          onClick={() => setTable(Array(time * days).fill(null))}
-          cursor="pointer"
+          <Tooltip label="Reset the table">
+            <Icon
+              ml="8"
+              my="5"
+              color={reload}
+              fontSize="2.65em"
+              fontWeight="bold"
+              onClick={() => setTable(Array(time * days).fill(null))}
+              cursor="pointer"
+              display={{
+                xs: "none",
+                sm: "none",
+                md: "block",
+                lg: "block",
+              }}
+            >
+              <path
+                fill="currentColor"
+                d="M13.6,2.4 C12.2,0.9 10.2,0 8,0 C3.6,0 0,3.6 0,8 C0,12.4 3.6,16 8,16 C11.7,16 14.8,13.4 15.7,10 L13.6,10 C12.8,12.3 10.6,14 8,14 C4.7,14 2,11.3 2,8 C2,4.7 4.7,2 8,2 C9.7,2 11.1,2.7 12.2,3.8 L9,7 L16,7 L16,0 L13.6,2.4 L13.6,2.4 Z"
+              />
+            </Icon>
+          </Tooltip>
+        </Box>
+        <Time />
+        <Days />
+        <Grid
+          templateColumns="repeat(9,1fr)"
+          position="relative"
+          left="4vw"
+          top="-100px"
           display={{
             xs: "none",
             sm: "none",
-            md: "block",
-            lg: "block",
+            md: "grid",
+            lg: "grid",
           }}
         >
-          <path
-            fill="currentColor"
-            d="M13.6,2.4 C12.2,0.9 10.2,0 8,0 C3.6,0 0,3.6 0,8 C0,12.4 3.6,16 8,16 C11.7,16 14.8,13.4 15.7,10 L13.6,10 C12.8,12.3 10.6,14 8,14 C4.7,14 2,11.3 2,8 C2,4.7 4.7,2 8,2 C9.7,2 11.1,2.7 12.2,3.8 L9,7 L16,7 L16,0 L13.6,2.4 L13.6,2.4 Z"
-          />
-        </Icon>
-      </Tooltip>
-      </Box>
-      <Time />
-      <Days />
-      <Grid
-        templateColumns="repeat(9,1fr)"
-        position="relative"
-        left="4vw"
-        top="-100px"
-        display ={{
-          xs : "none",
-          sm : "none",
-          md : "grid",
-          lg : "grid"
-        }}
-        
-      >
-        {table.map((item, index) => {
-          return item ? (
-            <GridItem
-              key={index}
-              h={["72.2px"]}
-              opacity="0.95"
-              w={["50px", "9vw"]}
-              borderColor="transparent"
-              fontFamily="Fira Code"
-              backgroundColor={
-                colorMode === "light" ? item.darkColor : item.lightColor
-              }
-              color={empty}
-              fontWeight="900"
-            >
-              <Center
-                position="relative"
-                top={["0%", "25%", "20%"]}
-                fontSize={{
-                  xs : "0",
-                  sm : "0",
-                  md : "11px",
-                  lg: "0.82em"
-                }}
-                              >
-                {item.Code}
-                <br />
-                {item.Type}
-                <MinusIcon
-                  onClick={() => handleRemove(item.Name)}
+          {table.map((item, index) => {
+            return item ? (
+              <GridItem
+                key={index}
+                h={["72.2px"]}
+                opacity="0.95"
+                w={["50px", "9vw"]}
+                borderColor="transparent"
+                fontFamily="Fira Code"
+                backgroundColor={
+                  colorMode === "light" ? item.darkColor : item.lightColor
+                }
+                color={empty}
+                fontWeight="900"
+              >
+                <Center
                   position="relative"
-                  transform="translate(80%,-120%)"
-                  display={{
-                    xs : "none",
-                    sm : "none",
-                    md : "none",
-                    lg: "block"
+                  top={["0%", "25%", "20%"]}
+                  fontSize={{
+                    xs: "0",
+                    sm: "0",
+                    md: "11px",
+                    lg: "0.82em",
                   }}
-                  color={empty}
-                  fontSize="1.09em"
-                  cursor="pointer"
-
-                />
-              </Center>
-            </GridItem>
-          ) : (
-            <GridItem
-              key={index}
-              h={["72.2px"]}
-              w="9vw"
-              borderWidth="0.02px"
-              borderColor={borderColor}
-              backgroundColor={empty}
-            />
-          );
-        })}
-      </Grid>
-    </Flex>
+                >
+                  <Tooltip label={item.Section}>
+                    <Box cursor="default">
+                    {item.Code}
+                      <br />
+                      {item.Type}
+                      </Box>
+                    </Tooltip>
+                    <MinusIcon
+                      onClick={() => handleRemove(item.Name)}
+                      position="relative"
+                      transform="translate(80%,-120%)"
+                      display={{
+                        xs: "none",
+                        sm: "none",
+                        md: "none",
+                        lg: "block",
+                      }}
+                      color={empty}
+                      fontSize="1.09em"
+                      cursor="pointer"
+                    />
+                </Center>
+              </GridItem>
+            ) : (
+              <GridItem
+                key={index}
+                h={["72.2px"]}
+                w="9vw"
+                borderWidth="0.02px"
+                borderColor={borderColor}
+                backgroundColor={empty}
+              />
+            );
+          })}
+        </Grid>
+      </Flex>
     </div>
   );
 }
