@@ -1,6 +1,9 @@
 ## [🗓️](https://priyansh71.github.io/6x9-Generator/) 6x9 Generator
 
-### This project is made for AUGSD Software Team Inductions , 2021.
+#### This project is made for AUGSD Software Team Inductions , 2021.
+
+#### Technolgies used :-
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DCFE&width=lg" />    <img src="https://img.shields.io/badge/Chakra--UI-319795?style=for-the-badge&logo=chakra-ui&logoColor=white" />     <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />      <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white" />
 
 <img width="1397" alt="Screenshot 2021-09-19 at 13 45 51" src="https://user-images.githubusercontent.com/77532581/133920580-0c6abc72-4018-413a-8c86-4729f2a6e893.png">
 
@@ -57,25 +60,30 @@ rm Courses.csv
 - add your own Courses.csv file (Refer [Customization](https://github.com/priyansh71/6x9-Generator/blob/main/src/Components/static/README.md)
      and make sure you have [Git](https://git-scm.com/), [node.js](https://nodejs.org/en/) and [python](https://www.python.org/downloads/) installed on your system))
      
-for macOS and Linux users :
+On macOs and Linux :- 
 ```
 python3 index.py
 npm start
 ```
 
-for Windows users:-
+On Windows :-
 ```
 python index.py
 npm start
 ```
 
 ---
+
+
 **Working of the project**
-- Frontend is made with [ReactJS](https://reactjs.org/), [Chakra-UI](https://chakra-ui.com/) while the data management is done with a [index.py script](https://github.com/priyansh71/6x9-Generator/blob/main/src/Components/static/index.py)
+- Frontend is made with ReactJS, [Chakra-UI](https://chakra-ui.com/) while the data management is done with a [index.py script](https://github.com/priyansh71/6x9-Generator/blob/main/src/Components/static/index.py)
 - The application takes in a non-clashing ```Courses.csv``` file and generates a `Course.js` file based on it
    - Refer [Customization](https://github.com/priyansh71/6x9-Generator/tree/main/src/Components/static/README.md) for steps on how to use a custom time-table.
-- The returned `Course.js` file is used to render courses options to the frontend
-- users can thus add and remove courses from their time-table from the client side
+- The returned `Course.js` file is used to render course options to the frontend Input Box
+- Users can select courses from the Input as per need
+- On addition or removal of a course from the table, the React DOM is re-rendering the table component
+- Theme and styling management of the project is all handled by Chakra-Ui
+
 
 **Important points**
 - All lectures are 1 hour in duration and follow the series format i.e. Monday series, Tuesday series but the amount of time it occurs in the week (1,2,3) as such is customizable.
@@ -85,4 +93,9 @@ npm start
 - Sunday is a day off.
 
 ___
+
+About me :- 
+
+[<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" />](https://github.com/priyansh71)
+
 &copy; Priyansh Vyas, 2021.
