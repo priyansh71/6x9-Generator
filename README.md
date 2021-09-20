@@ -31,6 +31,7 @@
 
 **To run the project  :-**
 1. default configuration
+     (make sure you have [Node](https://nodejs.org/en/) installed on your system)
 ```
 git clone https://github.com/priyansh71/6x9-Generator.git
 cd 6x9-Generator/
@@ -48,11 +49,20 @@ rm Courses.csv
 ```
 
 - add your own Courses.csv file [Refer([Customization](https://github.com/priyansh71/6x9-Generator/blob/main/src/Components/static/README.md))]
-  
+     (make sure you have [Node](https://nodejs.org/en/) and [Python](https://www.python.org/downloads/) installed on your system)
+     
+for macOS and Linux users :
 ```
 python3 index.py
 npm start
 ```
+
+for Windows users:-
+```
+python index.py
+npm start
+```
+
 ---
 **Working of the project**
 - Frontend is made with React, Chakra-Ui while the data management is done with a [python script](https://github.com/priyansh71/6x9-Generator/blob/main/src/Components/static/index.py)
