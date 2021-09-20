@@ -1,4 +1,4 @@
-## 6x9 Generator
+## [🗓️](https://priyansh71.github.io/6x9-Generator/) 6x9 Generator
 
 ### This project is made for AUGSD Software Team Inductions , 2021.
 
@@ -11,8 +11,14 @@
 <img width="1397" alt="Screenshot 2021-09-19 at 13 46 51" src="https://user-images.githubusercontent.com/77532581/133920563-30c83709-b34a-4778-8470-65b93c4ce565.png">
 
 ----
-- Courses can be then added or removed using the corresponding buttons.
-- Devices with large screens (> 1200 px) can remove all instances of a rendered course by clicking the `-` icon in each courseitem
+
+***Adding courses :-***
+- Courses can be added by using the green themed `Add` button.
+- Also, <kbd>return</kbd> on macOS and <kbd>Enter</kbd> on Windows keyboards' respectively would do the same job if the course is selected in the input box.
+
+***Removing Courses :-***
+- Courses can be removed by using the red themed `Remove` button.
+- Devices with large screens (> 1200 px) can remove all instances of a rendered course by clicking the `-` icon in each courseitem.
 
 <img width="1397" alt="Screenshot 2021-09-19 at 14 12 30" src="https://user-images.githubusercontent.com/77532581/133921147-2a13de19-0df7-42d0-a1ac-58688ff421f4.png">
 
@@ -31,7 +37,7 @@
 
 **To run the project  :-**
 1. default configuration
-     (make sure you have [Node](https://nodejs.org/en/) installed on your system)
+     (make sure you have [Git](https://git-scm.com/) and [node.js](https://nodejs.org/en/) installed on your system)
 ```
 git clone https://github.com/priyansh71/6x9-Generator.git
 cd 6x9-Generator/
@@ -48,8 +54,8 @@ cd src/Components/static/
 rm Courses.csv
 ```
 
-- add your own Courses.csv file [Refer([Customization](https://github.com/priyansh71/6x9-Generator/blob/main/src/Components/static/README.md))]
-     (make sure you have [Node](https://nodejs.org/en/) and [Python](https://www.python.org/downloads/) installed on your system)
+- add your own Courses.csv file (Refer [Customization](https://github.com/priyansh71/6x9-Generator/blob/main/src/Components/static/README.md)
+     and make sure you have [Git](https://git-scm.com/), [node.js](https://nodejs.org/en/) and [python](https://www.python.org/downloads/) installed on your system))
      
 for macOS and Linux users :
 ```
@@ -65,7 +71,7 @@ npm start
 
 ---
 **Working of the project**
-- Frontend is made with React, Chakra-Ui while the data management is done with a [python script](https://github.com/priyansh71/6x9-Generator/blob/main/src/Components/static/index.py)
+- Frontend is made with [ReactJS](https://reactjs.org/), [Chakra-UI](https://chakra-ui.com/) while the data management is done with a [index.py script](https://github.com/priyansh71/6x9-Generator/blob/main/src/Components/static/index.py)
 - The application takes in a non-clashing ```Courses.csv``` file and generates a `Course.js` file based on it
    - Refer [Customization](https://github.com/priyansh71/6x9-Generator/tree/main/src/Components/static/README.md) for steps on how to use a custom time-table.
 - The returned `Course.js` file is used to render courses options to the frontend
@@ -77,3 +83,6 @@ npm start
 - Labs time duration is customizable in the csv file ,  however they occur once a week.
 - Break timing is 13:00 - 14:00, this `lunchHour` variable can be changed [here](https://github.com/priyansh71/6x9-Generator/blob/77653fc005345277c0374d9e375ef57e4e9b64e4/src/Components/static/index.py#L3) for the data part, but for rendering, it will also require a change [here](https://github.com/priyansh71/6x9-Generator/blob/9cbf31badf6541de6c632caaaf85ff904c42fd0f/src/Components/dynamic/Time.jsx#L7) in the `time` array.
 - Sunday is a day off.
+
+___
+&copy; Priyansh Vyas, 2021.
